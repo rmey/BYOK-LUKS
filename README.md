@@ -108,7 +108,7 @@ ls -d /dev/mapper/*
 ### 6. Create Partition on device
 Use fdisk to create a new GPT Partition Table and a new Linux Partition on the Block device.
 ```shell
-fdisk /dev/mapper/3600a098038304749775d4c4e554b7742
+*fdisk /dev/mapper/3600a098038304749775d4c4e554b7742*
 Command (m for help): g
 Created a new GPT disklabel (GUID: CB7582D5-A8F7-4868-BA25-9A721FC15CD2).
 Command (m for help): n
