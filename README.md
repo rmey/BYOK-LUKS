@@ -231,3 +231,8 @@ This is a Proof-of-Concept and should not to be used as a full production exampl
 [1]: https://console.bluemix.net/docs/infrastructure/BlockStorage/accessing_block_storage_linux.html#mounting-block-storage-volumes
 [2]: https://www.server-world.info/en/note?os=Ubuntu_18.04&p=iscsi&f=3
 [3]: https://console.bluemix.net/docs/services/key-protect/concepts/envelope-encryption.html#overview
+
+https://console.bluemix.net/docs/infrastructure/BlockStorage/accessing_block_storage_linux.html#mounting-block-storage-volumes
+https://www.server-world.info/en/note?os=Ubuntu_18.04&p=iscsi&f=3
+https://console.bluemix.net/docs/services/key-protect/concepts/envelope-encryption.html#overview
+
