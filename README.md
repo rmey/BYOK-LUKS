@@ -8,6 +8,7 @@ This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
   * [Authorize the VM for the Block Storage](#2-authorize-the-vm-for-the-block-storage)
   * [Get the iSCSI credentials for IBM Block Storage](#3-get-the-iscsi-credentials-for-ibm-block-storage)
   * [Configure IBM Key Protect](#4-configure-ibm-key-protect)
+  * [Configure iSCSI on Linux VM](#4-configure-ibm-key-protect)
 - [About](#about)
 
 ## Overview
@@ -96,8 +97,12 @@ iscsiadm -m discovery -t sendtargets -p <IP Address>
 
 <img src="doc/09-iscsi.png" width="50%" height="50%">
 
+Now the following command should display a dev mapper device pointing to your iSCSI Blockstorage
+```shell
+ls -d /dev/mapper/*
+/dev/mapper/3600a098038304749775d4c4e554b7742
+```
 
-Do a discovery one one of the IP Adresses from Step [3].
 ## Disclaimer
 This is a Proof-of-Concept and should not to be used as a full production example without further hardening of the code:
 - use compiled code instead of a shell script
