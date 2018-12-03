@@ -102,13 +102,15 @@ iscsiadm -m discovery -t sendtargets -p <IP Address>
 Now the following command should display a dev mapper device pointing to your iSCSI Blockstorage, the GUID will different.
 ```shell
 ls -d /dev/mapper/*
+==>
 /dev/mapper/3600a098038304749775d4c4e554b7742
 ```
 
 ### 6. Create Partition on device
 Use fdisk to create a new GPT Partition Table and a new Linux Partition on the Block device.
 ```shell
-*fdisk /dev/mapper/3600a098038304749775d4c4e554b7742*
+fdisk /dev/mapper/3600a098038304749775d4c4e554b7742
+==>
 Command (m for help): g
 Created a new GPT disklabel (GUID: CB7582D5-A8F7-4868-BA25-9A721FC15CD2).
 Command (m for help): n
@@ -123,13 +125,28 @@ Re-reading the partition table failed.: Invalid argument
 The kernel still uses the old table. The new table will be used at the next reboot or after you run partprobe(8) or kpartx(8).
 ```
 Reread the partition Table:
-```console
+```shell
 kpartx /dev/mapper/3600a098038304749775d4c4e554b7742
+==>
 3600a098038304749775d4c4e554b7742p1 : 0 209713119 /dev/mapper/3600a098038304749775d4c4e554b7742 2048
 ```
 
 Verify the Partition is ok:
+```shell
+fdisk -l /dev/mapper/3600a098038304749775d4c4e554b7742
+==>
+3600a098038304749775d4c4e554b7742p1 : 0 209713119 /dev/mapper/3600a098038304749775d4c4e554b7742 2048
+root@vm-luks:~# fdisk -l /dev/mapper/3600a098038304749775d4c4e554b7742
+Disk /dev/mapper/3600a098038304749775d4c4e554b7742: 100 GiB, 107374182400 bytes, 209715200 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 65536 bytes
+Disklabel type: gpt
+Disk identifier: CB7582D5-A8F7-4868-BA25-9A721FC15CD2
 
+Device                                              Start       End   Sectors  Size Type
+/dev/mapper/3600a098038304749775d4c4e554b7742-part1  2048 209715166 209713119  100G Linux filesystem
+```
 
 
 ## Disclaimer
