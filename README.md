@@ -49,7 +49,7 @@ This will create access credentials.
 ### 3. Get the iSCSI credentials for IBM Block Storage
 On the details Page of the IBM Block Storage you will  find the following Information.
 - The target IP Addresses of the iSCSI Provider
-<img src="doc/05-IQN.png">
+<img src="doc/05-IQN.png" width="50%" height="50%">
 - Username
 - Password
 - Host IQN  (iSCSI qualified name)
