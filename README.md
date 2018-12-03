@@ -39,9 +39,10 @@ To mount the enycrypted partition we need the unwrapped key data for an API Call
 <img src="doc/01-OrderBlockStorage.png" width="500">
 
 ### 2. Authorize the VM for the storage
-![trust](doc/02-TrustBlockStorage.png)
 
-<img src="doc/03-TrustBlockStorage.png height: 50% width: 50%>
+<img src="doc/02-TrustBlockStorage.png" >
+
+<img src="doc/03-TrustBlockStorage.png" height: 50% width: 50%>
 
 This will create access credentials.
 
