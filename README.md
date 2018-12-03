@@ -75,10 +75,14 @@ Install the required packages in Ubuntu 16.04 LTS
 ```shell
 apt-get update && apt-get install multipath-tools curl jq
 ```
+Copy the byok-block-final.sh and env.txt.template to a directory on the Linux VM.
 
-
-
-Copy the byok-block-final.sh and env.txt.template to a directory on the Linux VM
+Edit the following 2 Files for the iSCSI Configuration
+- /etc/iscsi/initiatorname.iscsi
+InitiatorName=<IQN from Step [3](#3-get-the-iscsi-credentials-for-ibm-block-storage)>
+- /etc/iscsi/iscsid.conf
+Chap Settings for details refer to the following [Documentation][1].
+<img src="doc/07-iscsi.png">
 
 
 
