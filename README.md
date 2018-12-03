@@ -11,8 +11,6 @@ This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
   * [Configure iSCSI on Linux VM](#5-configure-iscsi-on-linux-vm)
   * [Create Partition on device](#6-create-partition-on-device)
   
-  
-- [About](#about)
 
 ## Overview
 
@@ -148,6 +146,33 @@ Disk identifier: CB7582D5-A8F7-4868-BA25-9A721FC15CD2
 Device                                              Start       End   Sectors  Size Type
 /dev/mapper/3600a098038304749775d4c4e554b7742-part1  2048 209715166 209713119  100G Linux filesystem
 ```
+### 7. Create, mount and umount encrypted LUKS Partition
+Copy the scriptfile *byok-block-final.sh* and *env.txt.template* to your Linux VM in the same directory.
+Rename *env.txt.template* to env.txt.
+Adopt the variable values:
+```console
+# your dev mapper block device partition of the ISCSI Device
+PARTITION=/dev/mapper/3600a098038304749775d4c4e554b7742-part1 
+# mount dir for encrypted FS
+MOUNT_DIR=/data
+# dev mapper name of encrypted fs /dev/mapper/byok
+CRYPT_MAP=byok
+# your IAM Service ID API Key (sensitive data)
+IAM_SERVICE_ID_API_KEY=XYZ-ABC
+# your IAM Endpoint depends on IBM Cloud region
+IAM_URI=https://iam.eu-de.bluemix.net/identity/token
+# your instance id of Key Protect Service ibmcloud service
+# ibmcloud resource service-instance <YOUR Key Protect Instance Name> --id
+# second string:
+KP_INSTANCE_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+# Your Key Protect Root Key Id
+KP_ROOT_KEY_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+# Your Keyprotect API Key Endpoint
+KP_API_URI=https://keyprotect.eu-de.bluemix.net/api/v2/keys/
+# Filenname of wrapped Data Encryption Key
+WRAPPED_DEK_FILE=cipherkey.txt
+```
+
 
 
 ## Disclaimer
