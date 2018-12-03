@@ -3,9 +3,9 @@ This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
 - [Overview](#Overview)
 - [Architecture](#Architecture)
 - [Requirements](#Requirements)
-- [API](#api)
-  * [toc.plugin](#tocplugin)
-  * [toc.json](#tocjson)
+- [Installation](#Installation)
+  * [Order Blockstorage in the IBM Cloud portal](#1. Order Blockstorage in the IBM Cloud portal)
+  * [Authorize the VM for the Block Storage](#2. Authorize the VM for the Block Storage)
   * [toc.insert](#tocinsert)
   * [Utility functions](#utility-functions)
 - [About](#about)
@@ -31,14 +31,16 @@ To mount the enycrypted partition we need the unwrapped key data for an API Call
 
 ## Requirements
 - Full IBM Cloud account with IaaS permission to provision block storage and virtual machines.
-- An existing Virtual Machine with Ubuntu Linux 16.04 LTS in the IBM Cloud accessible via ssh with public and private network connection.  
+- An existing Virtual Machine with Ubuntu Linux 16.04 LTS in the IBM Cloud accessible via ssh with public and private network connection. For this example a small machine is enough. 
 
 ## Installation
-### 1. Order Blockstorage in the IBM Cloud portal in the Data Center of your Virtual Machine
+### 1. Order IBM Block Storage in the IBM Cloud portal
+
+Order some Block Storage in the same Data Center Location where your VM resides.
 
 <img src="doc/01-OrderBlockStorage.png" width="50%" height="50%">
 
-### 2. Authorize the VM for the storage
+### 2. Authorize the VM for the Block Storage
 
 <img src="doc/02-TrustBlockStorage.png" width="80%" height="80%">
 
