@@ -81,8 +81,9 @@ Edit the following 2 Files for the iSCSI Configuration
 - /etc/iscsi/initiatorname.iscsi
 InitiatorName=<IQN from Step [3](#3-get-the-iscsi-credentials-for-ibm-block-storage)>
 - /etc/iscsi/iscsid.conf
-Chap Settings for details refer to the following [Documentation][1].
-<img src="doc/07-iscsi.png">
+
+Chap Settings for details refer to the following [Documentation][1], see example screenshot
+<img src="doc/08-iscsi.png">
 
 
 
