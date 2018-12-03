@@ -4,7 +4,7 @@ This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
 - [Architecture](#Architecture)
 - [Requirements](#Requirements)
 - [Installation](#Installation)
-  * [xxx](#1.-Order-Blockstorage-in-the-IBM-Cloud-portal)
+  * [Order IBM Block Storage in the IBM Cloud portal](#1-order-ibm-block-storage-in-the-ibm-cloud-portal)
   * [Authorize the VM for the Block Storage](# 2. Authorize the VM for the Block Storage)
   * [toc.insert](#tocinsert)
   * [Utility functions](#utility-functions)
