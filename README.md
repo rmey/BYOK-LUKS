@@ -8,7 +8,9 @@ This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
   * [Authorize the VM for the Block Storage](#2-authorize-the-vm-for-the-block-storage)
   * [Get the iSCSI credentials for IBM Block Storage](#3-get-the-iscsi-credentials-for-ibm-block-storage)
   * [Configure IBM Key Protect](#4-configure-ibm-key-protect)
-  * [Configure iSCSI on Linux VM](#4-configure-ibm-key-protect)
+  * [Configure iSCSI on Linux VM](#5-configure-iscsi-on-linux-vm)
+  * [Create Partition on device](#5-configure-iscsi-on-linux-vm)
+  
 - [About](#about)
 
 ## Overview
@@ -97,11 +99,38 @@ iscsiadm -m discovery -t sendtargets -p <IP Address>
 
 <img src="doc/09-iscsi.png" width="50%" height="50%">
 
-Now the following command should display a dev mapper device pointing to your iSCSI Blockstorage
+Now the following command should display a dev mapper device pointing to your iSCSI Blockstorage, the GUID will different.
 ```shell
 ls -d /dev/mapper/*
 /dev/mapper/3600a098038304749775d4c4e554b7742
 ```
+
+### 6. Create Partition on device
+Use fdisk to create a new GPT Partition Table and a new Linux Partition on the Block device.
+```shell
+fdisk /dev/mapper/3600a098038304749775d4c4e554b7742
+Command (m for help): g
+Created a new GPT disklabel (GUID: CB7582D5-A8F7-4868-BA25-9A721FC15CD2).
+Command (m for help): n
+Partition number (1-128, default 1): 
+First sector (2048-209715166, default 2048): 
+Last sector, +sectors or +size{K,M,G,T,P} (2048-209715166, default 209715166): 
+Created a new partition 1 of type 'Linux filesystem' and of size 100 GiB.
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Re-reading the partition table failed.: Invalid argument
+The kernel still uses the old table. The new table will be used at the next reboot or after you run partprobe(8) or kpartx(8).
+```
+Reread the partition Table:
+```console
+kpartx /dev/mapper/3600a098038304749775d4c4e554b7742
+3600a098038304749775d4c4e554b7742p1 : 0 209713119 /dev/mapper/3600a098038304749775d4c4e554b7742 2048
+```
+
+Verify the Partition is ok:
+
+
 
 ## Disclaimer
 This is a Proof-of-Concept and should not to be used as a full production example without further hardening of the code:
