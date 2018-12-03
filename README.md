@@ -1,9 +1,8 @@
 # LUKS Encryption with IBM Cloud Block Storage and IBM Key Protect
 This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
 - [Overview](#Overview)
-- [Architecture](##Architecture)
-- [Requirements](##Requirements)
-- [Usage](#usage)
+- [Architecture](#Architecture)
+- [Requirements](#Requirements)
 - [API](#api)
   * [toc.plugin](#tocplugin)
   * [toc.json](#tocjson)
