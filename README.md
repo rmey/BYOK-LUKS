@@ -172,7 +172,14 @@ KP_API_URI=https://keyprotect.eu-de.bluemix.net/api/v2/keys/
 # Filenname of wrapped Data Encryption Key
 WRAPPED_DEK_FILE=cipherkey.txt
 ```
-
+Make the script executable
+```shell
+chmod +x byok-block-final.sh
+```
+Now we can create an encrypted partition with
+```shell
+chmod +x byok-block-final.sh create
+```
 
 
 ## Disclaimer
