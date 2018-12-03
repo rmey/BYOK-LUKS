@@ -82,7 +82,7 @@ InitiatorName=<IQN from Step [3](#3-get-the-iscsi-credentials-for-ibm-block-stor
 
 Chap Settings for details refer to the following [Documentation][1], see example screenshot.
 
-<img src="doc/08-iscsi.png" width="50%" height="50%>
+<img src="doc/08-iscsi.png">
 
 Restart the required services to make the configuration active.
 ```shell
