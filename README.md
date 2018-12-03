@@ -40,7 +40,7 @@ To mount the enycrypted partition we need the unwrapped key data for an API Call
 
 ### 2. Authorize the VM for the storage
 
-<img src="doc/02-TrustBlockStorage.png" width="80%" height="80%"
+<img src="doc/02-TrustBlockStorage.png" width="80%" height="80%">
 
 <img src="doc/03-TrustBlockStorage.png" width="30%" height="30%">
 
