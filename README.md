@@ -36,13 +36,13 @@ To mount the enycrypted partition we need the unwrapped key data for an API Call
 ## Installation
 ### 1. Order Blockstorage in the IBM Cloud portal in the Data Center of your Virtual Machine
 
-<img src="doc/01-OrderBlockStorage.png" width="500">
+<img src="doc/01-OrderBlockStorage.png" width="50%" height="50%">
 
 ### 2. Authorize the VM for the storage
 
-<img src="doc/02-TrustBlockStorage.png" >
+<img src="doc/02-TrustBlockStorage.png" width="80%" height="80%"
 
-<img src="doc/03-TrustBlockStorage.png" width="50%" height="50%">
+<img src="doc/03-TrustBlockStorage.png" width="30%" height="30%">
 
 This will create access credentials.
 
