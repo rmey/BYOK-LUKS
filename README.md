@@ -89,8 +89,15 @@ Restart the required services to make the configuration active.
 systemctl restart  iscsid
 systemctl restart  open-iscsi
 ```
-Do a discovery one one of the IP Adresses from Step [3](3).
+Do a discovery one one of the IP Addresses from Step [3].
+```shell
+iscsiadm -m discovery -t sendtargets -p <IP Address>
+```
 
+<img src="doc/09-iscsi.png" width="50%" height="50%">
+
+
+Do a discovery one one of the IP Adresses from Step [3].
 ## Disclaimer
 This is a Proof-of-Concept and should not to be used as a full production example without further hardening of the code:
 - use compiled code instead of a shell script
