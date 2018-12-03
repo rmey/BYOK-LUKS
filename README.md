@@ -75,13 +75,21 @@ Install the required packages in Ubuntu 16.04 LTS
 ```shell
 apt-get update && apt-get install multipath-tools curl jq
 ```
+Edit the following 2 Files for the iSCSI Configuration
+- /etc/iscsi/initiatorname.iscsi
+InitiatorName=<IQN from Step [3](#3-get-the-iscsi-credentials-for-ibm-block-storage)>
+- /etc/iscsi/iscsid.conf
 
+Chap Settings for details refer to the following [Documentation][1], see example screenshot.
 
+<img src="doc/08-iscsi.png" width="50%" height="50%">
 
-Copy the byok-block-final.sh and env.txt.template to a directory on the Linux VM
-
-
-
+Restart the required services to make the configuration active.
+```shell
+systemctl restart  iscsid
+systemctl restart  open-iscsi
+```
+Do a discovery one one of the IP Adresses from Step [3](3).
 
 ## Disclaimer
 This is a Proof-of-Concept and should not to be used as a full production example without further hardening of the code:
