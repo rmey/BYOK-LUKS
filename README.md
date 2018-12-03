@@ -70,6 +70,18 @@ Copy the Root Key Id to the clipboard
 
 <img src="doc/07-KPKey.png">
 
+### 5. Configure iSCSI on Linux VM
+Install the required packages in Ubuntu 16.04 LTS
+```shell
+apt-get update && apt-get install multipath-tools curl jq
+```
+
+
+
+Copy the byok-block-final.sh and env.txt.template to a directory on the Linux VM
+
+
+
 
 ## Disclaimer
 This is a Proof-of-Concept and should not to be used as a full production example without further hardening of the code:
