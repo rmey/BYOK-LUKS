@@ -95,7 +95,7 @@ Restart the required services to make the configuration active.
 systemctl restart  iscsid
 systemctl restart  open-iscsi
 ```
-Do a discovery one one of the IP Addresses from Step [3].
+Do a discovery using one of the IP Addresses retrieved in Step [3].
 ```shell
 iscsiadm -m discovery -t sendtargets -p <IP Address>
 ```
