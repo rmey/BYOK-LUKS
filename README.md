@@ -6,8 +6,8 @@ This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
 - [Installation](#Installation)
   * [Order IBM Block Storage in the IBM Cloud portal](#1-order-ibm-block-storage-in-the-ibm-cloud-portal)
   * [Authorize the VM for the Block Storage](#2-authorize-the-vm-for-the-block-storage)
-  * [toc.insert](#tocinsert)
-  * [Utility functions](#utility-functions)
+  * [Get the iSCSI credentials for IBM Block Storage](#3-get-the-iscsi-credentials-for-ibm-block-storage)
+  * [Configure IBM Key Protect](#4-configure-ibm-key-protect)
 - [About](#about)
 
 ## Overview
