@@ -27,7 +27,7 @@ This example shows:
 ## Architecture
 TODO: include picture
 
-The Block Storage Device will as iSCSI using multi-path tools in Ubuntu. The configuration and principle is described in the following guides:
+The IBM Cloud Block Storage Device will be configured as iSCSI configuration using multi-path tools in Ubuntu. The configuration and principle is described in the following guides:
 - [Mounting Block Storage in IBM Cloud][1]
 - [Configuration of iSCSI in Ubuntu Linux][2]
 
@@ -237,4 +237,8 @@ https://console.bluemix.net/docs/infrastructure/BlockStorage/accessing_block_sto
 https://www.server-world.info/en/note?os=Ubuntu_18.04&p=iscsi&f=3
 
 https://console.bluemix.net/docs/services/key-protect/concepts/envelope-encryption.html#overview
+
+https://console.bluemix.net/apidocs/key-protect
+
+
 
