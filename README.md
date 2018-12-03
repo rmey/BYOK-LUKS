@@ -49,7 +49,7 @@ This will create access credentials.
 ### 3. Get the iSCSI credentials for IBM Block Storage
 On the details Page of the IBM Block Storage you will  find the following Information.
 - The target IP Addresses of the iSCSI Provider
-<img src="doc/doc/05-IQN.png">
+<img src="doc/05-IQN.png">
 - Username
 - Password
 - Host IQN  (iSCSI qualified name)
@@ -58,9 +58,9 @@ Please note down that information for later
 
 ### 4. Configure IBM Key Protect
 Create a new Instance of IBM Key Protect in your IBM Cloud Account and add a new **Root Key** and note the Root Key Id, Root Keys never leave the Key Protect Service
-![iqn](doc/06-KPKey.png)
+<img src="doc/06-KPKey.png" width="50%" height="50%">
 Copy the Root Key Id to the clipboard
-![iqn](doc/07-KPKey.png)
+<img src="doc/07-KPKey.png">
 
 
 ## Disclaimer
