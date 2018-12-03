@@ -10,7 +10,7 @@ This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
   * [Configure IBM Key Protect](#4-configure-ibm-key-protect)
   * [Configure iSCSI on Linux VM](#5-configure-iscsi-on-linux-vm)
   * [Create Partition on device](#6-create-partition-on-device)
-  * [Create, mount and umount encrypted LUKS Partition] (#7-create-mount-and-umount-encrypted-luks-partition)
+  * [Create, mount and umount encrypted LUKS Partition](#7-create-mount-and-umount-encrypted-luks-partition)
   
 
 ## Overview
