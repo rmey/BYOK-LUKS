@@ -1,14 +1,13 @@
 # LUKS Encryption with IBM Cloud Block Storage and IBM Key Protect
 This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
 - [Overview](#Overview)
-- [Architecture](##Architecture)
-- [Requirements](##Requirements)
-- [Usage](#usage)
-- [API](#api)
-  * [toc.plugin](#tocplugin)
-  * [toc.json](#tocjson)
-  * [toc.insert](#tocinsert)
-  * [Utility functions](#utility-functions)
+- [Architecture](#Architecture)
+- [Requirements](#Requirements)
+- [Installation](#Installation)
+  * [Order IBM Block Storage in the IBM Cloud portal](#1-order-ibm-block-storage-in-the-ibm-cloud-portal)
+  * [Authorize the VM for the Block Storage](#2-authorize-the-vm-for-the-block-storage)
+  * [Get the iSCSI credentials for IBM Block Storage](#3-get-the-iscsi-credentials-for-ibm-block-storage)
+  * [Configure IBM Key Protect](#4-configure-ibm-key-protect)
 - [About](#about)
 
 ## Overview
@@ -32,34 +31,56 @@ To mount the enycrypted partition we need the unwrapped key data for an API Call
 
 ## Requirements
 - Full IBM Cloud account with IaaS permission to provision block storage and virtual machines.
-- An existing Virtual Machine with Ubuntu Linux 16.04 LTS in the IBM Cloud accessible via ssh with public and private network connection.  
+- An existing Virtual Machine with Ubuntu Linux 16.04 LTS in the IBM Cloud accessible via ssh with public and private network connection. For this example a small machine is enough. 
 
 ## Installation
-### 1. Order Blockstorage in the IBM Cloud portal in the Data Center of your Virtual Machine
-![order](doc/01-OrderBlockStorage.png)
+### 1. Order IBM Block Storage in the IBM Cloud portal
 
-### 2. Authorize the VM for the storage
-![trust](doc/02-TrustBlockStorage.png)
+Order some Block Storage in the same Data Center Location where your VM resides.
 
-![trust](doc/03-TrustBlockStorage.png)
+<img src="doc/01-OrderBlockStorage.png" width="50%" height="50%">
+
+### 2. Authorize the VM for the Block Storage
+
+<img src="doc/02-TrustBlockStorage.png" width="80%" height="80%">
+
+<img src="doc/03-TrustBlockStorage.png" width="30%" height="30%">
 
 This will create access credentials.
 
 ### 3. Get the iSCSI credentials for IBM Block Storage
 On the details Page of the IBM Block Storage you will  find the following Information.
 - The target IP Addresses of the iSCSI Provider
-![iqn](doc/05-IQN.png)
+
+<img src="doc/05-IQN.png" width="50%" height="50%">
+
 - Username
 - Password
 - Host IQN  (iSCSI qualified name)
 Please note down that information for later
-![iqn](doc/04-IQN.png)
+
+<img src="doc/04-IQN.png" width="100%" height="100%">
 
 ### 4. Configure IBM Key Protect
 Create a new Instance of IBM Key Protect in your IBM Cloud Account and add a new **Root Key** and note the Root Key Id, Root Keys never leave the Key Protect Service
-![iqn](doc/06-KPKey.png)
+
+<img src="doc/06-KPKey.png" width="70%" height="70%">
+
 Copy the Root Key Id to the clipboard
-![iqn](doc/07-KPKey.png)
+
+<img src="doc/07-KPKey.png">
+
+### 5. Configure iSCSI on Linux VM
+Install the required packages in Ubuntu 16.04 LTS
+```shell
+apt-get update && apt-get install multipath-tools curl jq
+```
+
+
+
+Copy the byok-block-final.sh and env.txt.template to a directory on the Linux VM
+
+
 
 
 ## Disclaimer
