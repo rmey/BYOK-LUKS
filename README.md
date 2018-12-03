@@ -10,7 +10,7 @@ This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
   * [Configure IBM Key Protect](#4-configure-ibm-key-protect)
   * [Configure iSCSI on Linux VM](#5-configure-iscsi-on-linux-vm)
   * [Create Partition on device](#6-create-partition-on-device)
-  * 7. Create, mount and umount encrypted LUKS Partition
+  * [Create, mount and umount encrypted LUKS Partition] (#7-create-mount-and-umount-encrypted-luks-partition)
   
 
 ## Overview
@@ -18,11 +18,13 @@ This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
 This example shows:
 - Configuring Block Storage in IBM Cloud to be used by a Virtual Machine based on Ubuntu Linux 16.04 LTS  
 - Mounting IBM Cloud Block Storage with multi-path tools
-- Encrypting the block device with LUKS using a key retrieved from IBM Key Protect using an IAM Service ID API Key
+- Encrypting the block device with LUKS using enveloped Data Encryption Keys from IBM Key Protect.
 - Understanding of basic curl and shell scripting
+- Using the IBM IAM Token API and IBM Cloud Key Protect API
+
 
 ## Architecture
-todo: include picture
+TODO: include picture
 
 The Block Storage Device will as iSCSI using multi-path tools in Ubuntu. The configuration and principle is described in the following guides:
 - [Mounting Block Storage in IBM Cloud][1]
@@ -206,16 +208,15 @@ echo "Hello World" > /data/hello.txt"
 
 ```
 
-The next action is to umount the encrypted partition, each umount will make calls to IAM and Key Protect API to unwrap the key stored in the ciphertext:
+The next action is to umount the encrypted partition, after that you should not see the lost+found dir anymore.
 ```shell
 ./byok-block-final.sh umount
 # if your mount path is data you should see a lost+found dir, this is the encrypted LUKS partition
 ls /data/
 ==>
-# you should be able to write some file
-echo "Hello World" > /data/hello.txt"
-
 ```
+Examine or extend the script.
+
 
 ## Disclaimer
 This is a Proof-of-Concept and should not to be used as a full production example without further hardening of the code:
@@ -228,5 +229,4 @@ This is a Proof-of-Concept and should not to be used as a full production exampl
 ## References
 [1]: https://console.bluemix.net/docs/infrastructure/BlockStorage/accessing_block_storage_linux.html#mounting-block-storage-volumes
 [2]: https://www.server-world.info/en/note?os=Ubuntu_18.04&p=iscsi&f=3
-[3]:
-https://console.bluemix.net/docs/services/key-protect/concepts/envelope-encryption.html#overview
+[3]: https://console.bluemix.net/docs/services/key-protect/concepts/envelope-encryption.html#overview
