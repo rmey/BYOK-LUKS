@@ -10,6 +10,7 @@ This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
   * [Configure IBM Key Protect](#4-configure-ibm-key-protect)
   * [Configure iSCSI on Linux VM](#5-configure-iscsi-on-linux-vm)
   * [Create Partition on device](#6-create-partition-on-device)
+  * 7. Create, mount and umount encrypted LUKS Partition
   
 
 ## Overview
@@ -18,7 +19,7 @@ This example shows:
 - Configuring Block Storage in IBM Cloud to be used by a Virtual Machine based on Ubuntu Linux 16.04 LTS  
 - Mounting IBM Cloud Block Storage with multi-path tools
 - Encrypting the block device with LUKS using a key retrieved from IBM Key Protect using an IAM Service ID API Key
-- Basic curl and shell scripting
+- Understanding of basic curl and shell scripting
 
 ## Architecture
 todo: include picture
@@ -147,7 +148,14 @@ Device                                              Start       End   Sectors  S
 /dev/mapper/3600a098038304749775d4c4e554b7742-part1  2048 209715166 209713119  100G Linux filesystem
 ```
 ### 7. Create, mount and umount encrypted LUKS Partition
-Copy the scriptfile *byok-block-final.sh* and *env.txt.template* to your Linux VM in the same directory.
+
+The whole magic is in simple shell script. Copy the scriptfile *byok-block-final.sh* and *env.txt.template* to your Linux VM in the same directory. This file contains some functions to:
+- get an IAM Token
+- get an wrapped DEK and the DEK for LUKS commands via Key Protect API
+- encyrpting the partition with LUKS and the DEK
+- mounting, umounting and fsck Operations on the block device
+- test function to test IAM Token and Keyprotect API
+
 Rename *env.txt.template* to env.txt.
 Adopt the variable values:
 ```console
@@ -178,9 +186,36 @@ chmod +x byok-block-final.sh
 ```
 Now we can create an encrypted partition with
 ```shell
-chmod +x byok-block-final.sh create
+./byok-block-final.sh create
+==>
+Writing superblocks and filesystem accounting information: done  
+....
+
+```
+This will dump the wrapped DEK into a cipherfile.txt. Examine the file.
+
+The next action is to mount the encrypted partition:
+```shell
+./byok-block-final.sh mount
+# if your mount path is data you should see a lost+found dir, this is the encrypted LUKS partition
+ls /data/
+==>
+lost+found
+# you should be able to write some file
+echo "Hello World" > /data/hello.txt"
+
 ```
 
+The next action is to umount the encrypted partition, each umount will make calls to IAM and Key Protect API to unwrap the key stored in the ciphertext:
+```shell
+./byok-block-final.sh umount
+# if your mount path is data you should see a lost+found dir, this is the encrypted LUKS partition
+ls /data/
+==>
+# you should be able to write some file
+echo "Hello World" > /data/hello.txt"
+
+```
 
 ## Disclaimer
 This is a Proof-of-Concept and should not to be used as a full production example without further hardening of the code:
