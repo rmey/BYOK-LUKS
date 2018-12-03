@@ -9,7 +9,8 @@ This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
   * [Get the iSCSI credentials for IBM Block Storage](#3-get-the-iscsi-credentials-for-ibm-block-storage)
   * [Configure IBM Key Protect](#4-configure-ibm-key-protect)
   * [Configure iSCSI on Linux VM](#5-configure-iscsi-on-linux-vm)
-  * [Create Partition on device](#5-configure-iscsi-on-linux-vm)
+  * [Create Partition on device](#6-create-partition-on-device)
+  
   
 - [About](#about)
 
