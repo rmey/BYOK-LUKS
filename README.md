@@ -13,7 +13,6 @@ This is a basic example for IBM Key Protect with IBM Cloud Block Storage.
   * [Create, mount and umount encrypted LUKS Partition](#7-create-mount-and-umount-encrypted-luks-partition)
 - [Disclaimer](#Disclaimer)
   
-
 ## Overview
 
 This example shows:
@@ -23,7 +22,6 @@ This example shows:
 - Understanding of basic curl and shell scripting
 - Using the IBM IAM Token API and IBM Cloud Key Protect API
 
-
 ## Architecture
 TODO: include picture
 
@@ -32,8 +30,8 @@ The IBM Cloud Block Storage Device will be configured as iSCSI configuration usi
 - [Configuration of iSCSI in Ubuntu Linux][2]
 
 Once properly configured the Block Storage Device will be used to create a partition table and partition to be accessible by the Operating System.
-In IBM Key Protect a custom Root Key is defined, Root Keys could never leave the HSM Box behind the service. With this Root Key a Data Encryption Key DEK is created via API Call. This unwrapped DEK is passed to cryptsetup luksFormat to create an Encrypted LUKS Partition. The DEK is also returned as wrapped DEK which could only be unwrapped by the Root Key stored in Key Protect and the call to the Keyprotect API. This wrapped DEK is stored on the Filesystem in a text file. After the encrypted partition is created a normal EXTFS4 Partition is created into that partition.
-To mount the enycrypted partition we need the unwrapped key data for an API Call to unwrap (decrypt) the DEK with the Root Key. The unwrapped Key is passed to cryptsetup luksOpen. This concept is called [Envelope Encryption][3]
+In IBM Key Protect a Customer-managed root key is defined, root keys could never leave the HSM Box behind the service. With this root Key a Data Encryption Key DEK is created via API Call. This unwrapped DEK is passed to cryptsetup luksFormat to create an Encrypted LUKS Partition. The DEK is also returned as wrapped DEK which could only be unwrapped by the Root Key stored in Key Protect and the call to the Keyprotect API. This wrapped DEK is stored on the Filesystem in a text file. After the encrypted partition is created a normal EXTFS4 Partition is created into that partition.
+To mount the enycrypted partition we need the unwrapped key data for an API Call to unwrap (decrypt) the DEK with the root key. The unwrapped Key is passed to cryptsetup luksOpen. This concept is called [Envelope Encryption][3]
 
 ## Requirements
 - Full IBM Cloud account with IaaS permission to provision block storage and virtual machines.
@@ -226,11 +224,16 @@ This is a Proof-of-Concept and should not to be used as a full production exampl
 - clear the memory after the unwrapped DEK is passed to cryptsetup luksOpen
 - rotate Root Keys often
 - use code obfuscation techniques
+- use a regular cron job to track the state of the Custom Root Key, once deleted the volume should be instantly unmounted, you could use meta data of Key Protect API to get state information about the key
+- you should regular track access to the keys with IBM Cloud Activity Tracker please check here for the [Integration][4] and the events Key Protect is generating
 
 ## References
 [1]: https://console.bluemix.net/docs/infrastructure/BlockStorage/accessing_block_storage_linux.html#mounting-block-storage-volumes
 [2]: https://www.server-world.info/en/note?os=Ubuntu_18.04&p=iscsi&f=3
 [3]: https://console.bluemix.net/docs/services/key-protect/concepts/envelope-encryption.html#overview
+[4]: https://console.bluemix.net/docs/services/cloud-activity-tracker/tutorials/kp.html#kp
+[5]: https://console.bluemix.net/docs/services/key-protect/at-events.html#at-events
+
 
 https://console.bluemix.net/docs/infrastructure/BlockStorage/accessing_block_storage_linux.html#mounting-block-storage-volumes
 
@@ -239,6 +242,11 @@ https://www.server-world.info/en/note?os=Ubuntu_18.04&p=iscsi&f=3
 https://console.bluemix.net/docs/services/key-protect/concepts/envelope-encryption.html#overview
 
 https://console.bluemix.net/apidocs/key-protect
+
+https://console.bluemix.net/docs/services/cloud-activity-tracker/tutorials/kp.html#kp
+
+https://console.bluemix.net/docs/services/key-protect/at-events.html#at-events
+
 
 
 
