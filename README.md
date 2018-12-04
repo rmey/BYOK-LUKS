@@ -224,7 +224,7 @@ This is a Proof-of-Concept and should not to be used as a full production exampl
 - clear the memory after the unwrapped DEK is passed to cryptsetup luksOpen
 - rotate Root Keys often
 - use code obfuscation techniques
-- use a regular cron job to track the state of the Custom Root Key, once deleted the volume should be instantly unmounted, you could use meta data of Key Protect API to get state information about the key
+- use a regular cron job to track the state of the Customer managed root key, once deleted the volume should be instantly unmounted, you could use meta data of Key Protect API to get state information about the key
 - you should regular track access to the keys with IBM Cloud Activity Tracker please check here for the [Integration][4] and the events Key Protect is generating
 
 ## References
