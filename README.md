@@ -93,9 +93,10 @@ Restart the required services to make the configuration active.
 systemctl restart  iscsid
 systemctl restart  open-iscsi
 ```
-Do a discovery using one of the IP Addresses retrieved in Step [3].
+Do a discovery and a login using one of the IP Addresses retrieved in Step [3].
 ```shell
 iscsiadm -m discovery -t sendtargets -p <IP Address>
+iscsiadm -m node --login
 ```
 
 <img src="doc/09-iscsi.png" width="50%" height="50%">
