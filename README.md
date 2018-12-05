@@ -154,8 +154,8 @@ Device                                              Start       End   Sectors  S
 The whole magic is in simple shell script. Copy the scriptfile *byok-block-final.sh* and *env.txt.template* to your Linux VM in the same directory. This file contains some functions to:
 - get an IAM Token
 - get an wrapped DEK and the DEK for LUKS commands via Key Protect API
-- encyrpting the partition with LUKS and the DEK
-- mounting, umounting and fsck Operations on the block device
+- encrypting the partition with LUKS and the DEK
+- create encrypted partition, mount, umount, delete Operations on the encrypted block device
 - test function to test IAM Token and Keyprotect API
 
 Rename *env.txt.template* to env.txt.
@@ -221,12 +221,12 @@ Examine or extend the script.
 ## Disclaimer
 This is a Proof-of-Concept and should not to be used as a full production example without further hardening of the code:
 - use compiled code instead of a shell script
-- ask for IAM Service Id API key with password input
+- ask for IAM Service Id API key with password input or store API Key outside in your CI/CD automation and pass as parameter to the script
 - clear the memory after the unwrapped DEK is passed to cryptsetup luksOpen
 - rotate Root Keys often
-- use code obfuscation techniques
+- eventually use code obfuscation techniques
 - use a regular cron job to track the state of the Customer managed root key, once deleted the volume should be instantly unmounted, you could use meta data of Key Protect API to get state information about the key
-- you should regular track access to the keys with IBM Cloud Activity Tracker please check here for the [Integration][4] and the events Key Protect is generating
+- you should regular track access to the keys with IBM Cloud Activity Tracker please check the description of the  [Integration][4] and the events Key Protect is generating
 
 ## References
 [1]: https://console.bluemix.net/docs/infrastructure/BlockStorage/accessing_block_storage_linux.html#mounting-block-storage-volumes
